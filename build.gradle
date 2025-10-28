@@ -32,6 +32,15 @@ dependencies {
     annotationProcessor 'org.projectlombok:lombok'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+    // MyBatis Spring Boot Starter
+    //implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.3' // 버전은 프로젝트에 맞게 선택
+
+    //마이바티스 연동 의존성 잘못된..
+    //implementation "org.mybatis:mybatis:3.5.19" 일일이 연동하면 복잡해짐
+    // https://mvnrepository.com/artifact/org.mybatis/mybatis-spring
+    //implementation "org.mybatis:mybatis-spring:3.0.5" 일일이 연동하면 복잡해짐.
+    // https://mvnrepository.com/artifact/org.springframework/spring-core
+    //implementation "org.springframework:spring-core:6.2.11" //spring-boot-starter-web 안에 포함되어 있음
 }
 
 tasks.named('test') {
