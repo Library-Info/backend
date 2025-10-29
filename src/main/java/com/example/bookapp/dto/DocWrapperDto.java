@@ -1,5 +1,6 @@
 package com.example.bookapp.dto;
 
+import io.micrometer.observation.ObservationFilter;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
@@ -9,4 +10,5 @@ import lombok.ToString;
 @ToString
 public class DocWrapperDto {
     private BookDto doc;
+
 }
