@@ -33,7 +33,7 @@ dependencies {
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
     // MyBatis Spring Boot Starter
-    //implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.3' // 버전은 프로젝트에 맞게 선택
+    implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.3' // 버전은 프로젝트에 맞게 선택
 
     //마이바티스 연동 의존성 잘못된..
     //implementation "org.mybatis:mybatis:3.5.19" 일일이 연동하면 복잡해짐
