@@ -30,7 +30,7 @@ public class libraryController {
 
         System.out.println("Getting library list");
         List<?> libraryList=libraryService.getLibraryBylocation(lantitude,longitude,city,province);
-        return ResponseEntity.ok().build();
+        return ResponseEntity.ok().body(libraryList);
     }
 
 
