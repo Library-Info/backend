@@ -10,5 +10,5 @@ import java.util.List;
 @NoArgsConstructor
 @ToString
 public class LibraryResponseDto {
-    private List<BookDto> docs;
+    private List<DocWrapperDto> docs;
 }
