@@ -30,13 +30,19 @@ public class LibraryServiceImpl {
     public List<?> getLibraryBylocation(double mylantitude, double mylongitude, String city, String province) {
         // 해당 시도의 도서관 리스트
         List<LibraryDto> libraryList =libraryMapper.findLibraryBycityandprovince(city,province);
+        System.out.println("Getting library list"+libraryList);
         List<LibraryDto> libraryListIn500 = new ArrayList<>();
         // 리스트를 돌려가면서 500m 안인지 계산하는  공식 메서드
         for(LibraryDto library:libraryList){
-            boolean isWithinRadius=GeoDistanceCalculator.isWithinRadius(mylantitude,mylongitude,1.11,1.12,500.0);
+            boolean isWithinRadius=GeoDistanceCalculator.isWithinRadius(mylantitude,mylongitude,library.getLattiude(),library.getLongitude(),1000.0);
             if(isWithinRadius){
                 libraryListIn500.add(library);
             }
+        }
+        System.out.println("libraryListIn500"+libraryListIn500);
+
+        if(libraryListIn500.size()==0){
+            return libraryList;
         }
 
         return libraryListIn500;
