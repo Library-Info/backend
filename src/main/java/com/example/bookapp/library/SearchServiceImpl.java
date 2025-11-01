@@ -1,8 +1,6 @@
 package com.example.bookapp.library;
 
-import com.example.bookapp.dto.BookDto;
-import com.example.bookapp.dto.DocWrapperDto;
-import com.example.bookapp.dto.LibraryResponseDto;
+import com.example.bookapp.dto.*;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,15 +9,11 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
 import java.net.*;
 
-import java.awt.print.Book;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.function.Function;
 import java.util.stream.Collectors;
 
 @Service
@@ -115,5 +109,61 @@ public class SearchServiceImpl {
 //        }
 //        List<Book> searchBookList=null;
         //return null;
+    }
+
+    public List<LibraryAvailabilityDto> searchLibraryByIsbn(int isbn, List<Integer> libraryCodeList) {
+
+        //http://data4library.kr/api/bookExist?authKey=[발급받은키]&libCode=[도서관코드]&isbn13=[ISBN]
+        //1. UriComponentsBuilder로 안전하게 URL 생성 (자동으로 인코딩 처리)
+        int isbn13=isbn;
+        List<LibraryAvailabilityDto> availableLibraries = new ArrayList<>();
+        URI uri;
+        for(int libCode : libraryCodeList){
+            uri= UriComponentsBuilder
+                    .fromUriString("http://data4library.kr")
+                    .path("/api/bookExist")
+                    .queryParam("authKey",authkey)
+                    .queryParam("libCode",libCode)
+                    .queryParam("isbn13",isbn13)
+                    .queryParam("format","json")
+                    .encode()
+                    .build()
+                    .toUri();
+            System.out.println(uri);
+            String jsonString = restTemplate.getForObject(uri, String.class);
+
+            //3. ObjectMapper를 사용하여 Json파싱
+            try {
+                //전체 Json구조에서 reponse 노드만 추출
+                JsonNode rootNode = objectMapper.readTree(jsonString);
+                JsonNode responseNode = rootNode.path("response");
+
+                //response 노드의 내용을 LibraryResponseDto로 변환
+                isbnResponseDto isbnResponseDto = objectMapper.treeToValue(responseNode, isbnResponseDto.class);
+                //3. 최종적으로 원하는 BookDto의 리스트로 변환하여 출력
+                if("Y".equalsIgnoreCase(isbnResponseDto.getResult().getHasBook())){
+                    String hasBook = isbnResponseDto.getResult().getHasBook();
+                    String loanAvailable = isbnResponseDto.getResult().getLoanAvailable();
+                    LibraryAvailabilityDto availabilityInfo = new LibraryAvailabilityDto(libCode, hasBook, loanAvailable);
+                    availableLibraries.add(availabilityInfo);
+                }
+                return availableLibraries;
+
+
+            }
+            catch (Exception e){
+                e.printStackTrace();
+                return availableLibraries;
+            }
+
+
+
+
+        }
+
+
+        return null;
+
+
     }
 }
