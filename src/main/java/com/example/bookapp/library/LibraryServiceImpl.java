@@ -12,8 +12,9 @@ import java.util.List;
 public class LibraryServiceImpl {
 
 
-    private LibraryMapper libraryMapper;
-    public LibraryServiceImpl( ){
+    private final LibraryMapper libraryMapper;
+    public LibraryServiceImpl(LibraryMapper libraryMapper ) {
+        this.libraryMapper = libraryMapper;
 
     }
 
