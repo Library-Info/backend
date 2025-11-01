@@ -12,6 +12,7 @@ import lombok.ToString;
 public class LibraryDto {
     private Long id;
     private String libName;
+    private int libCode;
     private String address;
     private String tel;
     private float lattiude;
