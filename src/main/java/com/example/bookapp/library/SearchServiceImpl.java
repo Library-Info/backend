@@ -111,11 +111,11 @@ public class SearchServiceImpl {
         //return null;
     }
 
-    public List<LibraryAvailabilityDto> searchLibraryByIsbn(int isbn, List<Integer> libraryCodeList) {
+    public List<LibraryAvailabilityDto> searchLibraryByIsbn(String isbn, List<Integer> libraryCodeList) {
 
         //http://data4library.kr/api/bookExist?authKey=[발급받은키]&libCode=[도서관코드]&isbn13=[ISBN]
         //1. UriComponentsBuilder로 안전하게 URL 생성 (자동으로 인코딩 처리)
-        int isbn13=isbn;
+        String isbn13=isbn;
         List<LibraryAvailabilityDto> availableLibraries = new ArrayList<>();
         URI uri;
         for(int libCode : libraryCodeList){
