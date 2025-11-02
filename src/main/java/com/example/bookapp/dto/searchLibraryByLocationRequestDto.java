@@ -5,6 +5,6 @@ import lombok.Getter;
 import java.util.List;
 @Getter
 public class searchLibraryByLocationRequestDto {
-    private int isbn13;
+    private String isbn13;
     private List<Integer> libraryCodeList;
 }
