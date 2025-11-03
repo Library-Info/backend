@@ -15,7 +15,7 @@ public class LibraryDto {
     private int libCode;
     private String address;
     private String tel;
-    private float lattiude;
+    private float latitude;
     private float longitude;
     private String homepage;
     private  String closed;
