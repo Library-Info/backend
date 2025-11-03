@@ -18,21 +18,36 @@ public class GeoDistanceCalculator {
     public static double calculateDistance(double lat1, double lon1, double lat2, double lon2) {
 
         // 각도를 라디안으로 변환
-        double lat1Rad = Math.toRadians(lat1);
-        double lat2Rad = Math.toRadians(lat2);
-        double deltaLat = Math.toRadians(lat2 - lat1);
-        double deltaLon = Math.toRadians(lon2 - lon1);
-
-        // Haversine 공식
-        double c= EARTH_RADIUS_KM*Math.acos(Math.sin(lat1)*Math.sin(lat2)+Math.cos(lat1)*Math.cos(lat2)*Math.cos(lon1-lon2));
-//        double a = Math.sin(deltaLat / 2) * Math.sin(deltaLat / 2) +
-//                Math.cos(lat1Rad) * Math.cos(lat2Rad) *
-//                        Math.sin(deltaLon / 2) * Math.sin(deltaLon / 2);
+//        double lat1Rad = Math.toRadians(lat1);
+//        double lat2Rad = Math.toRadians(lat2);
+//        double deltaLat = Math.toRadians(lat2 - lat1);
+//        double deltaLon = Math.toRadians(lon2 - lon1);
 //
-//        double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+//        // Haversine 공식
+//        double c= EARTH_RADIUS_KM*Math.acos(Math.sin(lat1)*Math.sin(lat2)+Math.cos(lat1)*Math.cos(lat2)*Math.cos(lon1-lon2));
+////        double a = Math.sin(deltaLat / 2) * Math.sin(deltaLat / 2) +
+////                Math.cos(lat1Rad) * Math.cos(lat2Rad) *
+////                        Math.sin(deltaLon / 2) * Math.sin(deltaLon / 2);
+////
+////        double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+//
+//        // 거리 (미터)
+//        double distance = EARTH_RADIUS_M * c;
+        double distance;
+        double radius = 6371; // 지구 반지름(km)
+        double toRadian = Math.PI / 180;
 
-        // 거리 (미터)
-        double distance = EARTH_RADIUS_M * c;
+        double deltaLatitude = Math.abs(lat1 - lat2) * toRadian;
+        double deltaLongitude = Math.abs(lon1 - lon2) * toRadian;
+
+        double sinDeltaLat = Math.sin(deltaLatitude / 2);
+        double sinDeltaLng = Math.sin(deltaLongitude / 2);
+        double squareRoot = Math.sqrt(
+                sinDeltaLat * sinDeltaLat +
+                        Math.cos(lat1 * toRadian) * Math.cos(lat2 * toRadian) * sinDeltaLng * sinDeltaLng);
+
+        distance = 2 * radius * Math.asin(squareRoot);
+
 
         return distance;
     }
