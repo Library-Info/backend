@@ -49,7 +49,7 @@ public class GeoDistanceCalculator {
         distance = 2 * radius * Math.asin(squareRoot);
 
 
-        return distance;
+        return distance*1000;
     }
 
     /**
