@@ -63,6 +63,7 @@ public class GeoDistanceCalculator {
      */
     public static boolean isWithinRadius(double lat1, double lon1, double lat2, double lon2, double radiusMeters) {
         double distance = calculateDistance(lat1, lon1, lat2, lon2);
+        System.out.println("Distance between lat1 and lat2 is " + distance);
         return distance <= radiusMeters;
     }
 }
