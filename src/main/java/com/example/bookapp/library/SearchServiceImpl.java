@@ -147,22 +147,21 @@ public class SearchServiceImpl {
                     LibraryAvailabilityDto availabilityInfo = new LibraryAvailabilityDto(libCode, hasBook, loanAvailable);
                     availableLibraries.add(availabilityInfo);
                 }
-                return availableLibraries;
+
 
 
             }
             catch (Exception e){
                 e.printStackTrace();
-                return availableLibraries;
+
             }
 
 
 
 
         }
+        return availableLibraries;
 
-
-        return null;
 
 
     }
