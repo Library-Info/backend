@@ -41,7 +41,7 @@ public class LibraryServiceImpl {
         }
         System.out.println("libraryListIn500"+libraryListIn500);
 
-        if(libraryListIn500.size()==0){
+        if(libraryListIn500.isEmpty()){
             return libraryList;
         }
 
