@@ -23,7 +23,7 @@ public class libraryController {
      * province: ex) 경기도
      */
     @GetMapping("/list")
-    public ResponseEntity<?> getlibraryList(@RequestParam float lantitude,float longitude,String city, String province){
+    public ResponseEntity<?> getlibraryList(@RequestParam double lantitude,double longitude,String city, String province){
 
         System.out.println("Getting library list");
         List<?> libraryList=libraryService.getLibraryBylocation(lantitude,longitude,city,province);
