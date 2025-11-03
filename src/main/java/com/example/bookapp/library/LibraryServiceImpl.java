@@ -34,7 +34,7 @@ public class LibraryServiceImpl {
         List<LibraryDto> libraryListIn500 = new ArrayList<>();
         // 리스트를 돌려가면서 500m 안인지 계산하는  공식 메서드
         for(LibraryDto library:libraryList){
-            boolean isWithinRadius=GeoDistanceCalculator.isWithinRadius(mylantitude,mylongitude,library.getLattiude(),library.getLongitude(),1000.0);
+            boolean isWithinRadius=GeoDistanceCalculator.isWithinRadius(mylantitude,mylongitude,library.getLattiude(),library.getLongitude(),0.5);
             if(isWithinRadius){
                 libraryListIn500.add(library);
             }
