@@ -2,6 +2,7 @@ package com.example.bookapp.library;
 
 import com.example.bookapp.dto.LibraryDto;
 import com.example.bookapp.mapper.LibraryMapper;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -10,6 +11,8 @@ import java.util.List;
 @Service
 public class LibraryServiceImpl {
 
+    @Value("${my.SearchRadiusMeter}")
+    private  double  SEARCH_RADIUS_METER;
 
     private final LibraryMapper libraryMapper;
     public LibraryServiceImpl(LibraryMapper libraryMapper ) {
@@ -33,7 +36,7 @@ public class LibraryServiceImpl {
         List<LibraryDto> libraryListIn500 = new ArrayList<>();
         // 리스트를 돌려가면서 500m 안인지 계산하는  공식 메서드
         for(LibraryDto library:libraryList){
-            boolean isWithinRadius=GeoDistanceCalculator.isWithinRadius(mylantitude,mylongitude,library.getLatitude(),library.getLongitude(),500.00);
+            boolean isWithinRadius=GeoDistanceCalculator.isWithinRadius(mylantitude,mylongitude,library.getLatitude(),library.getLongitude(),SEARCH_RADIUS_METER);
             if(isWithinRadius){
                 libraryListIn500.add(library);
             }
