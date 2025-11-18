@@ -13,5 +13,7 @@ public interface LibraryMapper {
     // 시,도 위도, 경도를 보고 도서관 리스트를 추출합니다.
     List<LibraryDto> findLibraryBycityandprovince( @Param("city") String city,
                                                    @Param("province") String province);
+    int findAgeCode(@Param("age") int age);
+    int findGenderCode(@Param("gender") String gender);
 
 }
