@@ -1,4 +1,4 @@
-package com.example.bookapp.library;
+package com.example.bookapp.library.controller;
 //Haversine Formula 공식 사용해서 일정거리안에 들어가는지
 public class GeoDistanceCalculator {
 

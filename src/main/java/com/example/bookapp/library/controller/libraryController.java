@@ -1,5 +1,6 @@
-package com.example.bookapp.library;
+package com.example.bookapp.library.controller;
 
+import com.example.bookapp.library.LibraryServiceImpl;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -28,6 +29,28 @@ public class libraryController {
         System.out.println("Getting library list");
         List<?> libraryList=libraryService.getLibraryBylocation(lantitude,longitude,city,province);
         return ResponseEntity.ok().body(libraryList);
+    }
+
+    /**
+     * 연령대별 지역에 따른 추천도서
+     * 성별코드 0: 남성, 1:여성,2:미상
+     * 연령코드
+     * 0:영유아(0-5세)
+     * 6:유야(6-7세)
+     * 8:초등(8-13세)
+     * 14:청소년(14-19세)
+     * 20:20대
+     * 30:30대
+     * 40:40대
+     * 50:50대
+     * 60:60대
+     * -1:미상
+     */
+    @GetMapping("/recommend")
+    public ResponseEntity<?> getRecommendBookList(@RequestParam int age,@RequestParam String gender){
+        System.out.println("Getting recommend book list");
+        List<?>recommendBookList=libraryService.getRecommendBookByFilter(age,gender);
+        return ResponseEntity.ok().body(recommendBookList);
     }
 
 
