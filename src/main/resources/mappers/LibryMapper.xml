@@ -9,4 +9,16 @@
         AND address LIKE CONCAT('%', #{province}, '%')
     </select>
 
+    <select id="findAgeCode" parameterType="AgeDto">
+        select code,detail
+        from  age
+        WHERE #{age} BETWEEN min_age AND max_age
+    </select>
+
+    <select id="findGenderCode" parameterType="GenderDto">
+        select code
+        from  gender
+        WHERE gender LIKE CONCAT('%', #{gender}, '%')
+    </select>
+
 </mapper>
