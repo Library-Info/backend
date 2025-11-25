@@ -46,7 +46,7 @@ public class SearchServiceImpl {
                 .path("/api/srchBooks")
                 .queryParam("authKey",authkey)
                 .queryParam("keyword",keyword)
-                .queryParam("pageNO",pageNO)
+                .queryParam("pageNo",pageNO)
                 .queryParam("pageSize",10)
                 .queryParam("format","json")
                 .encode()
