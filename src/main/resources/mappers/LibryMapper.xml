@@ -22,7 +22,7 @@
     </select>
 
     <select id="findRegionCode" parameterType="RegionDto">
-        select code
+        select  IFNULL(code,31)
         from region_code
         where region_name LIKE CONCAT('%', #{region}, '%')
     </select>
