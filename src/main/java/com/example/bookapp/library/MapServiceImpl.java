@@ -44,7 +44,7 @@ public class MapServiceImpl {
 
 
         // 중요: 이 부분에 발급받은 REST API 키를 입력하세요.
-        String REST_API_KEY = "YOUR_KAKAO_REST_API_KEY";
+        String REST_API_KEY = "e140120f18ebca253dc9456e7b42857e";
         List<LibraryDto> libraryList =libraryMapper.findLibraryBycityandprovince(city,province);
 
         try {
