@@ -58,7 +58,7 @@ public class MapServiceImpl {
             List<Destination> destinations = new ArrayList<>();
             for (int i=0 ; i<libraryList.toArray().length;i++) {
                 LibraryDto libraryDto = libraryList.get(i);
-                Destination destination=new Destination((double) libraryDto.getLatitude(),(double) libraryDto.getLongitude(),String.valueOf(libraryDto.getId()));
+                Destination destination=new Destination((double) libraryDto.getLongitude(),(double) libraryDto.getLatitude(),String.valueOf(libraryDto.getId()));
                 destinations.add(destination);
             }
 
