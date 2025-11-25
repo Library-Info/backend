@@ -21,4 +21,10 @@
         WHERE gender LIKE CONCAT('%', #{gender}, '%')
     </select>
 
+    <select id="findRegionCode" parameterType="RegionDto">
+        select code
+        from region_code
+        where region_name LIKE CONCAT('%', #{region}, '%')
+    </select>
+
 </mapper>
