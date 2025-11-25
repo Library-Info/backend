@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import java.awt.*;
 import java.net.URI;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -27,8 +28,8 @@ public class LibraryServiceImpl {
     @Value("${my.SearchRadiusMeter}")
     private  double  SEARCH_RADIUS_METER;
 
-    @Value("${my.authkey")
-    private String authkey;
+    //@Value("${my.authkey")
+    private String authkey="6d0e94c11f407ef53554afd3bef2eb1ad3460e28f505c26d241d712257fcb15a";
 
     private final LibraryMapper libraryMapper;
     public LibraryServiceImpl(ObjectMapper objectMapper, LibraryMapper libraryMapper ) {
@@ -68,10 +69,11 @@ public class LibraryServiceImpl {
     }
 
 
-    public List<?> getRecommendBookByFilter(int age, String gender) {
+    public List<?> getRecommendBookByFilter(int age, String gender,String region) {
         int ageCode=libraryMapper.findAgeCode(age);
         int genderCode= libraryMapper.findGenderCode(gender);
-        int regionCode=0;
+        int regionCode=libraryMapper.findRegionCode(region);
+        System.out.println("getRecommendBookByFilter"+ageCode+genderCode+regionCode);
 
         URI uri;
         uri= UriComponentsBuilder
@@ -84,6 +86,7 @@ public class LibraryServiceImpl {
                 .queryParam("pageNO",1)
                 .queryParam("pageSize",5)
                 .queryParam("format","json")
+
                 .encode()
                 .build()
                 .toUri();
@@ -91,8 +94,9 @@ public class LibraryServiceImpl {
             String jsonString = restTemplate.getForObject(uri, String.class);
             JsonNode rootNode = objectMapper.readTree(jsonString);
             JsonNode responseNode = rootNode.path("response");
+            System.out.println("responseNode"+responseNode);
             RecommededBookResponseDto libraryResponseDto = objectMapper.treeToValue(responseNode, RecommededBookResponseDto.class);
-
+            System.out.println("libraryResponseDto"+libraryResponseDto);
             return libraryResponseDto.getDocs().stream() //.stream 으로 리스트를 스트림으로 변환
                     .map(RedDocWrapperDto::getDoc)
                     .collect(Collectors.toList());
