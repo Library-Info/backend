@@ -107,7 +107,7 @@ public class MapServiceImpl {
                         System.out.println("   Duration: " + route.getSummary().getDuration() + " seconds");
 
                         for (LibraryDto dto:libraryList){
-                            if(dto.getLibCode()==Integer.parseInt(route.getKey())){
+                            if(dto.getId()==Integer.parseInt(route.getKey())){
                                 roureInfoList.add(dto);
                             }
                         }
