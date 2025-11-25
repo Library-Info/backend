@@ -105,8 +105,13 @@ public class MapServiceImpl {
                         System.out.println("   Result: " + route.getResultMsg());
                         System.out.println("   Distance: " + route.getSummary().getDistance() + " meters");
                         System.out.println("   Duration: " + route.getSummary().getDuration() + " seconds");
-                        LibraryDto libraryDto=libraryList.get(Integer.parseInt(route.getKey()));
-                        roureInfoList.add(libraryDto);
+                        for (LibraryDto dto:libraryList){
+                            if(dto.getLibCode()==Integer.parseInt(route.getKey())){
+                                LibraryDto libraryDto=libraryList.get(Integer.parseInt(route.getKey()));
+                                roureInfoList.add(libraryDto);
+                            }
+                        }
+
 
                     } else {
                         System.out.println("   Error: " + route.getResultMsg());
