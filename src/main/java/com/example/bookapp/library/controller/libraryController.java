@@ -47,9 +47,9 @@ public class libraryController {
      * -1:미상
      */
     @GetMapping("/recommend")
-    public ResponseEntity<?> getRecommendBookList(@RequestParam int age,@RequestParam String gender){
+    public ResponseEntity<?> getRecommendBookList(@RequestParam int age,@RequestParam String gender,@RequestParam String region){
         System.out.println("Getting recommend book list");
-        List<?>recommendBookList=libraryService.getRecommendBookByFilter(age,gender);
+        List<?>recommendBookList=libraryService.getRecommendBookByFilter(age,gender,region);
         return ResponseEntity.ok().body(recommendBookList);
     }
 
