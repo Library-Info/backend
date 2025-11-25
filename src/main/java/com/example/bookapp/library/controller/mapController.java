@@ -2,9 +2,7 @@ package com.example.bookapp.library.controller;
 
 import com.example.bookapp.library.MapServiceImpl;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
 import java.util.List;
@@ -18,8 +16,8 @@ public class mapController {
     public mapController(MapServiceImpl mapService) {
         this.mapService = mapService;
     }
-
-    public ResponseEntity<?> getLibraryListByKakao(String city, String province,double mylat, double mylong,int radius) throws IOException {
+    @GetMapping("/kakao")
+    public ResponseEntity<?> getLibraryListByKakao(@RequestParam String city, @RequestParam String province, @RequestParam double mylat, @RequestParam double mylong, @RequestParam int radius) throws IOException {
         List<?> libryList =mapService.getLibraryListByKaKaoMap(city, province, mylat, mylong, radius);
         return ResponseEntity.ok(libryList);
     }
