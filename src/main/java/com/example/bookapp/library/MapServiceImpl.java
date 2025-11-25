@@ -28,6 +28,10 @@ public class MapServiceImpl {
     LibraryMapper libraryMapper;
     // 아무것도 안들어오면 기본값으로 도보 경로 추천
 
+    public MapServiceImpl(LibraryMapper libraryMapper) {
+        this.libraryMapper = libraryMapper;
+    }
+
     //아니면 경로에 맞춰서 안내
     // 이동수단 종류
     //	https://map.kakao.com/link/from/에이치스퀘어,37.402056,127.108212/to/카카오판교아지트,37.3952969470752,127.110449292622
