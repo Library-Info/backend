@@ -15,5 +15,6 @@ public interface LibraryMapper {
                                                    @Param("province") String province);
     int findAgeCode(@Param("age") int age);
     int findGenderCode(@Param("gender") String gender);
+    int findRegionCode(@Param("region") String region);
 
 }
