@@ -44,7 +44,7 @@ public class MapServiceImpl {
      * 도로정보를 반영하여 도서관 리스트를 반환합니다.
      * 지정한 경로안에 있는, 그중 가장 최단시간으로 갈수 있는 도서관정보를 반환합니다.
      */
-    public List<?> getLibraryListByKaKaoMap(String city,String province,double myX,double myY,int radius) throws IOException {
+    public List<?> getLibraryListByKaKaoMap(String city,String province,double myY,double myX,int radius) throws IOException {
 
 
         // 중요: 이 부분에 발급받은 REST API 키를 입력하세요.
